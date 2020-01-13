@@ -16,10 +16,10 @@ window.onload = function() {
 }
 function moveEveryThing() {
   appleX = appleX + appleSpeedX;
-  if(appleX > 800) {
-    appleSpeedX = -5;
-  } else if(appleX < 0) {
-    appleSpeedX = 5;
+  if(appleX > canvas.width) {
+    appleSpeedX = -appleSpeedX;
+  } else if (appleX < 0) {
+    appleSpeedX = -appleSpeedX;
   }
 }
 function drawEverything() {
