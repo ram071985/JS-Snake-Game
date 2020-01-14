@@ -23,9 +23,10 @@ function moveEveryThing() {
   }
 }
 function drawEverything() {
-  moveEveryThing();
   canvasContext.fillStyle = "grey";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   canvasContext.fillStyle = "red";
-  canvasContext.fillRect(appleX, 100, 10,10 );
+  canvasContext.beginPath();
+  canvasContext.arc(appleX,100,6,0,Math.PI*2, true);
+  canvasContext.fill();
 }
