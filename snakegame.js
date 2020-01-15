@@ -9,32 +9,30 @@ window.onload = function() {
   canvasContext = canvas.getContext("2d");
 
   let framesPerSecond = 30;
-  setInterval(function () {
+  setInterval(function() {
     moveSnake();
     drawEverything();
-  }, 1000/framesPerSecond);
-
-}
+  }, 1000 / framesPerSecond);
+};
 function moveSnake() {
   snakeX = snakeX + snakeSpeedX;
   snakeGrowX = snakeGrowX + snakeSpeedX;
- //if(snakeX  > canvas.width) {
- //  snakeSpeedX = -snakeSpeedX;
-// } else if (snakeX < 0) {
-  //  snakeSpeedX = -snakeSpeedX;
-  //}
+  if (snakeX === 790) {
+    snakeSpeedX = 0;
+  }
+  if (snakeSpeedX === 0) {
+    snakeGrowX = snakeGrowX - snakeSpeedX;
+  }
 }
 function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeX,100,8,0,Math.PI*2, true);
+  canvasContext.arc(snakeX, 100, 8, 0, Math.PI * 2, true);
   canvasContext.fill();
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeGrowX,100,8,0,Math.PI*2, true);
+  canvasContext.arc(snakeGrowX, 100, 8, 0, Math.PI * 2, true);
   canvasContext.fill();
-  
-
 }
