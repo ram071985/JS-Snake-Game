@@ -2,7 +2,7 @@ let canvas;
 let canvasContext;
 let snakeX = 50;
 let snakeSpeedX = 5;
-let snakeGrowX = snakeX - 10;
+let snakeGrowX = snakeX - 23;
 
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
@@ -14,6 +14,7 @@ window.onload = function() {
     drawEverything();
   }, 1000 / framesPerSecond);
 };
+
 function moveSnake() {
   snakeX = snakeX + snakeSpeedX;
   snakeGrowX = snakeGrowX + snakeSpeedX;
@@ -24,15 +25,24 @@ function moveSnake() {
     snakeGrowX = snakeGrowX - snakeSpeedX;
   }
 }
+
 function drawEverything() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   canvasContext.fillStyle = "green";
+  canvasContext.fillRect(0,0,800, 45);
+  canvasContext.fillStyle = "red";
   canvasContext.beginPath();
-  canvasContext.arc(snakeX, 100, 8, 0, Math.PI * 2, true);
+  canvasContext.arc(20, 22.5, 14, 0, Math.PI * 2, true);
   canvasContext.fill();
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeGrowX, 100, 8, 0, Math.PI * 2, true);
+  canvasContext.arc(snakeX, 100, 12, 0, Math.PI * 2, true);
+  canvasContext.fill();
+  canvasContext.fillStyle = "green";
+  canvasContext.beginPath();
+  canvasContext.arc(snakeGrowX, 100, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
+
+
