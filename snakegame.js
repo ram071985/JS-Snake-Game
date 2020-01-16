@@ -35,6 +35,9 @@ function drawEverything() {
   canvasContext.beginPath();
   canvasContext.arc(20, 22.5, 14, 0, Math.PI * 2, true);
   canvasContext.fill();
+  canvasContext.font = "30px Times New Roman";
+  canvasContext.fillStyle = "white";
+  canvasContext.fillText("=",40,32);
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
   canvasContext.arc(snakeX, 100, 12, 0, Math.PI * 2, true);
