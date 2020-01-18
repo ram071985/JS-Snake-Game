@@ -3,6 +3,9 @@ let canvasContext;
 let snakeX = 50;
 let snakeSpeedX = 5;
 let snakeGrowX = snakeX - 23;
+let canvasId = document.getElementById("gameCanvas");
+
+
 
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
@@ -12,6 +15,7 @@ window.onload = function() {
   setInterval(function() {
     moveSnake();
     drawEverything();
+    canvas.load = addScore();
   }, 1000 / framesPerSecond);
 };
 
@@ -47,5 +51,11 @@ function drawEverything() {
   canvasContext.arc(snakeGrowX, 100, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
+
+function addScore() {
+  
+}
+
+
 
 
