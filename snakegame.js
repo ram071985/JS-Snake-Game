@@ -64,9 +64,11 @@ function yAxisMoveDown() {
     let framesPerSecond = 30;
 setInterval(function() {
   if (event.code === "ArrowRight") {
+    snakeY = null;
     moveRight();
     xAxisMoveRight();
   } else if (event.code === "ArrowDown") {
+    snakeX = null;
    moveDown();
    yAxisMoveDown();
   };
@@ -110,12 +112,10 @@ function moveDown() {
   canvasContext.fillText("=", 40, 34);
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
+  canvasContext.arc(200, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
   canvasContext.fillStyle = "red";
   canvasContext.beginPath();
   canvasContext.arc(623, 300, 10, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
-
-
