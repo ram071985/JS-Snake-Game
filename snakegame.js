@@ -1,15 +1,45 @@
 let canvas;
 let canvasContext;
-let snakeX = 200;
-let snakeSpeedX = 5;
+let snakeX = null;
+let snakeSpeedX = null;
 // let snakeGrowX = snakeX - 23;
-let snakeY = 300;
-let snakeSpeedY = -5;
+let snakeY = null;
+let snakeSpeedY = null;
+let moveUp = null;
+let moveDown = null;
+let moveRight = null;
+let moveLeft = null;
 // let snakeGrowY = snake
 
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
+  
+  let framesPerSecond = 30;
+setInterval(function() {
+  if (moveUp > 0) {
+    console.log(moveUp > 0);
+    canvasContext.fillStyle = "green";
+    canvasContext.beginPath();
+    canvasContext.arc(200, moveUp, 12, 0, Math.PI * 2, true);
+    canvasContext.fill();
+  } else if (moveDown === true) {
+    canvasContext.fillStyle = "green";
+    canvasContext.beginPath();
+    canvasContext.arc(200, moveDown, 12, 0, Math.PI * 2, true);
+    canvasContext.fill();
+  } else if (moveRight === true) {
+    canvasContext.fillStyle = "green";
+    canvasContext.beginPath();
+    canvasContext.arc(moveRight, 300, 12, 0, Math.PI * 2, true);
+    canvasContext.fill();
+  } else if (moveLeft === true) {
+    canvasContext.fillStyle = "green";
+    canvasContext.beginPath();
+    canvasContext.arc(moveLeft, 300, 12, 0, Math.PI * 2, true);
+    canvasContext.fill();
+  }
+}, 1000 / framesPerSecond);
   drawStartGame();
 };
 
@@ -42,33 +72,37 @@ function drawStartGame() {
   loadScore();
 }
 
+function snakeMoveUp() {
+  canvasContext.fillStyle = "green";
+  canvasContext.beginPath();
+  canvasContext.arc(200, moveUp, 12, 0, Math.PI * 2, true);
+  canvasContext.fill();
+}
+
+function snakeMoveDown() {
+  canvasContext.fillStyle = "green";
+  canvasContext.beginPath();
+  canvasContext.arc(200, moveDown, 12, 0, Math.PI * 2, true);
+  canvasContext.fill();
+}
+
+function snakeMoveRight() {
+  canvasContext.fillStyle = "green";
+  canvasContext.beginPath();
+  canvasContext.arc(moveRight, 300, 12, 0, Math.PI * 2, true);
+  canvasContext.fill();
+}
+
+function snakeMoveLeft() {}
 window.addEventListener("keydown", function(event) {
-  let moveRight = snakeX + snakeSpeedX;
-  let moveLeft = snakeX - snakeSpeedX;
-  let moveUp = snakeY + snakeSpeedY;
-  let moveDown = snakeY - snakeSpeedY;
-  let framesPerSecond = 30;
-  setInterval(function() {
-    if (event.code === "ArrowUp") {
-      canvasContext.fillStyle = "green";
-      canvasContext.beginPath();
-      canvasContext.arc(200, moveUp, 12, 0, Math.PI * 2, true);
-      canvasContext.fill();
-    } else if (event.code === "ArrowDown") {
-      canvasContext.fillStyle = "green";
-      canvasContext.beginPath();
-      canvasContext.arc(200, moveDown, 12, 0, Math.PI * 2, true);
-      canvasContext.fill();
-    } else if (event.code === "ArrowRight") {
-      canvasContext.fillStyle = "green";
-      canvasContext.beginPath();
-      canvasContext.arc(moveRight, 300, 12, 0, Math.PI * 2, true);
-      canvasContext.fill();
-    } else if (event.code === "ArrowLeft") {
-      canvasContext.fillStyle = "green";
-      canvasContext.beginPath();
-      canvasContext.arc(moveLeft, 300, 12, 0, Math.PI * 2, true);
-      canvasContext.fill();
-    }
-  }, 1000 / framesPerSecond);
+  if (event.code === "ArrowUp") {
+    moveUp = snakeY + snakeSpeedY;
+  } else if (event.code === "ArrowDown") {
+    moveDown = snakeY - snakeSpeedY;
+  } else if (event.code === "ArrowRight") {
+    moveRight = snakeX + snakeSpeedX;
+  } else if (event.code === "ArrowLeft") {
+    moveLeft = snakeX - snakeSpeedX;
+  }
 });
+
