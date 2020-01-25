@@ -8,10 +8,10 @@ let snakeY = 60;
 let snakeSpeedX = 5;
 let snakeSpeedY = 5;
 let snakeDirection;
-let fruitX = Math.floor((Math.random() * 800) + 1);
-let fruitY = Math.floor((Math.random() * 600) + 1);
-console.log(fruitX);
-console.log(fruitY);
+
+let fruitX = Math.floor(Math.random() * 800 + 1);
+let fruitY = Math.floor(Math.random() * 600 + 1);
+
 
 function drawCanvas() {
   canvasContext.fillStyle = "black";
@@ -33,8 +33,8 @@ function moveRight() {
   if (snakeX === 790) {
     snakeSpeedX = 0;
     window.location.reload(false);
+  } 
 
-  }
 }
 
 function moveLeft() {
@@ -68,16 +68,13 @@ function moveDown() {
     snakeSpeedY = 0;
     window.location.reload(false);
   }
-
 }
 
 function makeFruit() {
-canvasContext.fillStyle = "red";
-canvasContext.beginPath();
-canvasContext.arc(fruitX, fruitY, 10, 0, Math.PI * 2, true);
-canvasContext.fill();
-
-
+  canvasContext.fillStyle = "red";
+  canvasContext.beginPath();
+  canvasContext.arc(fruitX, fruitY, 10, 0, Math.PI * 2, true);
+  canvasContext.fill();
 }
 
 window.addEventListener("keydown", function(e) {
@@ -100,7 +97,7 @@ window.onload = function() {
   setInterval(function() {
     drawCanvas();
     makeFruit();
-     if (snakeDirection === "right") {
+    if (snakeDirection === "right") {
       snakeSpeedX = 5;
       moveRight();
       snakeX = snakeX + snakeSpeedX;
@@ -123,6 +120,5 @@ window.onload = function() {
     } else {
       snakeStartPosition();
     }
-  }, 1000/framesPerSecond);
+  }, 1000 / framesPerSecond);
 };
-
