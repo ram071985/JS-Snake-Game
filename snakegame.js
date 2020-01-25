@@ -8,6 +8,10 @@ let snakeY = 60;
 let snakeSpeedX = 5;
 let snakeSpeedY = 5;
 let snakeDirection;
+let fruitX = Math.floor((Math.random() * 800) + 1);
+let fruitY = Math.floor((Math.random() * 600) + 1);
+console.log(fruitX);
+console.log(fruitY);
 
 function drawCanvas() {
   canvasContext.fillStyle = "black";
@@ -49,6 +53,15 @@ function moveDown() {
   canvasContext.fill();
 }
 
+function makeFruit() {
+canvasContext.fillStyle = "red";
+canvasContext.beginPath();
+canvasContext.arc(fruitX, fruitY, 14, 0, Math.PI * 2, true);
+canvasContext.fill();
+
+
+}
+
 window.addEventListener("keydown", function(e) {
   if (e.code === "ArrowRight") {
     snakeDirection = "right";
@@ -68,6 +81,7 @@ window.onload = function() {
   let framesPerSecond = 30;
   setInterval(function() {
     drawCanvas();
+  
     if (snakeDirection === "right") {
       snakeSpeedX = 5;
       moveRight();
@@ -90,8 +104,9 @@ window.onload = function() {
       snakeSpeedX = 0;
     } else {
       snakeStartPosition();
+      makeFruit();
     }
   }, 1000/framesPerSecond);
 };
 
-// }
+
