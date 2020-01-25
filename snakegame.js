@@ -32,6 +32,8 @@ function moveRight() {
   canvasContext.fill();
   if (snakeX === 790) {
     snakeSpeedX = 0;
+    window.location.reload(false);
+
   }
 }
 
@@ -42,6 +44,7 @@ function moveLeft() {
   canvasContext.fill();
   if (snakeX === 10) {
     snakeSpeedX = 0;
+    window.location.reload(false);
   }
 }
 
@@ -52,6 +55,7 @@ function moveUp() {
   canvasContext.fill();
   if (snakeY === 10) {
     snakeSpeedY = 0;
+    window.location.reload(false);
   }
 }
 
@@ -62,6 +66,7 @@ function moveDown() {
   canvasContext.fill();
   if (snakeY === 590) {
     snakeSpeedY = 0;
+    window.location.reload(false);
   }
 
 }
@@ -114,8 +119,6 @@ window.onload = function() {
       snakeSpeedY = 5;
       moveDown();
       snakeY = snakeY + snakeSpeedY;
-      snakeSpeedX = 0;
-    } else if (snakeX === 790) {
       snakeSpeedX = 0;
     } else {
       snakeStartPosition();
