@@ -30,6 +30,9 @@ function moveRight() {
   canvasContext.beginPath();
   canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
+  if (snakeX === 790) {
+    snakeSpeedX = 0;
+  }
 }
 
 function moveLeft() {
@@ -37,6 +40,9 @@ function moveLeft() {
   canvasContext.beginPath();
   canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
+  if (snakeX === 10) {
+    snakeSpeedX = 0;
+  }
 }
 
 function moveUp() {
@@ -44,6 +50,9 @@ function moveUp() {
   canvasContext.beginPath();
   canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
+  if (snakeY === 10) {
+    snakeSpeedY = 0;
+  }
 }
 
 function moveDown() {
@@ -51,12 +60,16 @@ function moveDown() {
   canvasContext.beginPath();
   canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
+  if (snakeY === 590) {
+    snakeSpeedY = 0;
+  }
+
 }
 
 function makeFruit() {
 canvasContext.fillStyle = "red";
 canvasContext.beginPath();
-canvasContext.arc(fruitX, fruitY, 14, 0, Math.PI * 2, true);
+canvasContext.arc(fruitX, fruitY, 10, 0, Math.PI * 2, true);
 canvasContext.fill();
 
 
@@ -81,8 +94,8 @@ window.onload = function() {
   let framesPerSecond = 30;
   setInterval(function() {
     drawCanvas();
-  
-    if (snakeDirection === "right") {
+    makeFruit();
+     if (snakeDirection === "right") {
       snakeSpeedX = 5;
       moveRight();
       snakeX = snakeX + snakeSpeedX;
@@ -99,14 +112,14 @@ window.onload = function() {
       snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
       snakeSpeedY = 5;
-      snakeY = snakeY + snakeSpeedY;
       moveDown();
+      snakeY = snakeY + snakeSpeedY;
+      snakeSpeedX = 0;
+    } else if (snakeX === 790) {
       snakeSpeedX = 0;
     } else {
       snakeStartPosition();
-      makeFruit();
     }
   }, 1000/framesPerSecond);
 };
-
 
