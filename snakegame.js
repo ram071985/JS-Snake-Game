@@ -24,38 +24,36 @@ function snakeStartPosition() {
 function moveRight() {
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeX, 60, 12, 0, Math.PI * 2, true);
+  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
 
 function moveLeft() {
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(snakeX, 60, 12, 0, Math.PI * 2, true);
+  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
 
 function moveUp() {
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(60, snakeY, 12, 0, Math.PI * 2, true);
+  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
 
 function moveDown() {
   canvasContext.fillStyle = "green";
   canvasContext.beginPath();
-  canvasContext.arc(60, snakeY, 12, 0, Math.PI * 2, true);
+  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
-
-
 
 window.addEventListener("keydown", function(e) {
   if (e.code === "ArrowRight") {
     snakeDirection = "right";
   } else if (e.code === "ArrowLeft") {
-    snakeDirection = "left"; 
+    snakeDirection = "left";
   } else if (e.code === "ArrowUp") {
     snakeDirection = "up";
   } else if (e.code === "ArrowDown") {
@@ -63,32 +61,37 @@ window.addEventListener("keydown", function(e) {
   }
 });
 
-
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
 
-  
+  let framesPerSecond = 30;
   setInterval(function() {
     drawCanvas();
     if (snakeDirection === "right") {
-    moveRight();
-    snakeX = snakeX + snakeSpeedX;
+      snakeSpeedX = 5;
+      moveRight();
+      snakeX = snakeX + snakeSpeedX;
+      snakeSpeedY = 0;
     } else if (snakeDirection === "left") {
-      moveLeft(); 
+      snakeSpeedX = 5;
+      moveLeft();
       snakeX = snakeX - snakeSpeedX;
+      snakeSpeedY = 0;
     } else if (snakeDirection === "up") {
+      snakeSpeedY = 5;
       moveUp();
       snakeY = snakeY - snakeSpeedY;
+      snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
+      snakeSpeedY = 5;
       snakeY = snakeY + snakeSpeedY;
-     moveDown();
+      moveDown();
+      snakeSpeedX = 0;
     } else {
       snakeStartPosition();
     }
-  }, 1000);
- 
+  }, 1000/framesPerSecond);
 };
-
 
 // }
