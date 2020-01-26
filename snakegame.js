@@ -5,12 +5,13 @@
 
 let snakeX = 60;
 let snakeY = 60;
-let snakeSpeedX = 5;
-let snakeSpeedY = 5;
+let snakeSpeedX = 10;
+let snakeSpeedY = 10;
 let snakeDirection;
+let snakeArray = [];
 
-let fruitX = Math.floor(Math.random() * 800 + 1);
-let fruitY = Math.floor(Math.random() * 600 + 1);
+let fruitX = Math.floor(Math.random() * 40) * 20;
+let fruitY = Math.floor(Math.random() * 30) * 20;
 
 function drawCanvas() {
   canvasContext.fillStyle = "black";
@@ -19,79 +20,54 @@ function drawCanvas() {
 
 function snakeStartPosition() {
   canvasContext.fillStyle = "green";
-  canvasContext.beginPath();
-  canvasContext.arc(60, 60, 12, 0, Math.PI * 2, true);
-  canvasContext.fill();
+  canvasContext.fillRect(60, 60, 20, 20);
 }
 
 function moveRight() {
   canvasContext.fillStyle = "green";
-  canvasContext.beginPath();
-  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
-  canvasContext.fill();
-  if (snakeX === 790) {
-    snakeSpeedX = 0;
-    window.location.reload(false);  
-  }
-  if (snakeX === fruitX) {
-    snakeSpeedX = 0;
+  canvasContext.fillRect(snakeX, snakeY, 20, 20);
+  if (snakeX === fruitX && snakeY === fruitY) {
+
+    window.location.reload(false);
+  } else if (snakeX === 800) {
     window.location.reload(false);
   }
-} 
+}
 
 function moveLeft() {
   canvasContext.fillStyle = "green";
-  canvasContext.beginPath();
-  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
-  canvasContext.fill();
-  if (snakeX === 10) {
-    snakeSpeedX = 0;
+  canvasContext.fillRect(snakeX, snakeY, 20, 20);
+  if (snakeX === fruitX && snakeY === fruitY) {
     window.location.reload(false);
-  } 
-  if (snakeX === fruitX) {
-    snakeSpeedX = 0;
+  } else if (snakeX === 0) {
     window.location.reload(false);
   }
 }
 
 function moveUp() {
   canvasContext.fillStyle = "green";
-  canvasContext.beginPath();
-  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
-  canvasContext.fill();
-  if (snakeY === 10) {
-    snakeSpeedY = 0;
+  canvasContext.fillRect(snakeX, snakeY, 20, 20);
+  if (snakeX === fruitX && snakeY === fruitY) {
     window.location.reload(false);
-  }
-  if (snakeY === fruitY) {
-    snakeSpeedX = 0;
+  } else if (snakeY === 0) {
     window.location.reload(false);
   }
 }
 
 function moveDown() {
   canvasContext.fillStyle = "green";
-  canvasContext.beginPath();
-  canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
-  canvasContext.fill();
-  if (snakeY === 590) {
-    snakeSpeedY = 0;
+  canvasContext.fillRect(snakeX, snakeY, 20, 20);
+  if (snakeX === fruitX && snakeY === fruitY) {
     window.location.reload(false);
-  }
-  if (snakeY === fruitY) {
-    snakeSpeedX = 0;
+  } else if (snakeY === 600) {
     window.location.reload(false);
   }
 }
 
 function makeFruit() {
   canvasContext.fillStyle = "red";
-  canvasContext.beginPath();
-  canvasContext.arc(fruitX, fruitY, 10, 0, Math.PI * 2, true);
-  canvasContext.fill();
+  canvasContext.fillRect(fruitX, fruitY, 20, 20);
 }
-
-
 
 window.addEventListener("keydown", function(e) {
   if (e.code === "ArrowRight") {
@@ -108,28 +84,27 @@ window.addEventListener("keydown", function(e) {
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
-
-  let framesPerSecond = 30;
+  let framesPerSecond = 10;
   setInterval(function() {
     drawCanvas();
     makeFruit();
     if (snakeDirection === "right") {
-      snakeSpeedX = 5;
+      snakeSpeedX = 20;
       moveRight();
       snakeX = snakeX + snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "left") {
-      snakeSpeedX = 5;
+      snakeSpeedX = 20;
       moveLeft();
       snakeX = snakeX - snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "up") {
-      snakeSpeedY = 5;
+      snakeSpeedY = 20;
       moveUp();
       snakeY = snakeY - snakeSpeedY;
       snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
-      snakeSpeedY = 5;
+      snakeSpeedY = 20;
       moveDown();
       snakeY = snakeY + snakeSpeedY;
       snakeSpeedX = 0;
