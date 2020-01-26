@@ -33,7 +33,7 @@ function moveRight() {
     snakeSpeedX = 0;
     window.location.reload(false);  
   }
-  if (snakeX === fruitX) {
+  else if (snakeX === fruitX) {
     window.location.reload(false);
   }
 }
