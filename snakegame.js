@@ -12,7 +12,6 @@ let snakeDirection;
 let fruitX = Math.floor(Math.random() * 800 + 1);
 let fruitY = Math.floor(Math.random() * 600 + 1);
 
-
 function drawCanvas() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
@@ -32,9 +31,11 @@ function moveRight() {
   canvasContext.fill();
   if (snakeX === 790) {
     snakeSpeedX = 0;
+    window.location.reload(false);  
+  }
+  if (snakeX === fruitX) {
     window.location.reload(false);
-  } 
-
+  }
 }
 
 function moveLeft() {
@@ -57,6 +58,9 @@ function moveUp() {
     snakeSpeedY = 0;
     window.location.reload(false);
   }
+  if (snakeX === fruitX) {
+    window.location.reload(false);
+  }
 }
 
 function moveDown() {
@@ -76,6 +80,8 @@ function makeFruit() {
   canvasContext.arc(fruitX, fruitY, 10, 0, Math.PI * 2, true);
   canvasContext.fill();
 }
+
+
 
 window.addEventListener("keydown", function(e) {
   if (e.code === "ArrowRight") {
