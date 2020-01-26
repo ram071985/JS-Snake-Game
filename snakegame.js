@@ -33,10 +33,11 @@ function moveRight() {
     snakeSpeedX = 0;
     window.location.reload(false);  
   }
-  else if (snakeX === fruitX) {
+  if (snakeX === fruitX) {
+    snakeSpeedX = 0;
     window.location.reload(false);
   }
-}
+} 
 
 function moveLeft() {
   canvasContext.fillStyle = "green";
@@ -44,6 +45,10 @@ function moveLeft() {
   canvasContext.arc(snakeX, snakeY, 12, 0, Math.PI * 2, true);
   canvasContext.fill();
   if (snakeX === 10) {
+    snakeSpeedX = 0;
+    window.location.reload(false);
+  } 
+  if (snakeX === fruitX) {
     snakeSpeedX = 0;
     window.location.reload(false);
   }
@@ -58,7 +63,8 @@ function moveUp() {
     snakeSpeedY = 0;
     window.location.reload(false);
   }
-  if (snakeX === fruitX) {
+  if (snakeY === fruitY) {
+    snakeSpeedX = 0;
     window.location.reload(false);
   }
 }
@@ -70,6 +76,10 @@ function moveDown() {
   canvasContext.fill();
   if (snakeY === 590) {
     snakeSpeedY = 0;
+    window.location.reload(false);
+  }
+  if (snakeY === fruitY) {
+    snakeSpeedX = 0;
     window.location.reload(false);
   }
 }
