@@ -1,8 +1,8 @@
 
 let snakeHeadX = 200;
 let snakeHeadY = 300;
-let snakeBodyX = 180
-let snakeBodyY = 300;
+let snakeBodyX;
+let snakeBodyY;
 let snakeSpeedX = 10;
 let snakeSpeedY = 10;
 let snakeDirection;
@@ -49,7 +49,7 @@ function moveUp() {
     window.location.reload(false);
   } else if (snakeHeadY === 0) {
     window.location.reload(false);
-  }
+  } 
 }
 
 function moveDown() {
@@ -64,8 +64,8 @@ function moveDown() {
 
 function makeFruit() {
   if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-  canvasContext.fillStyle = "red";
-  canvasContext.fillRect(0, 0, 0, 0);
+    canvasContext.fillStyle = "red";
+    canvasContext.fillRect(fruitX, fruitY, 20, 20);
 } else {
   canvasContext.fillStyle = "red";
   canvasContext.fillRect(fruitX, fruitY, 20, 20);
@@ -74,8 +74,32 @@ function makeFruit() {
 
 function growSnake() {
   //if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-    canvasContext.fillStyle = "green";
-    canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
+    if (snakeDirection === "up") {
+      snakeBodyX = snakeHeadX;
+      snakeBodyY = snakeHeadY - 20;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20);
+    } else if (snakeDirection === "down") {
+      snakeBodyX = snakeHeadX;
+      snakeBodyY = snakeHeadY + 20;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20);
+    } else if (snakeDirection === "left") {
+      snakeBodyX = snakeHeadX + 20;
+      snakeBodyY = snakeHeadY;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
+    } else if (snakeDirection === "right"){
+      snakeBodyX = snakeHeadX - 20;
+      snakeBodyY = snakeHeadY;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
+    } else {
+      snakeBodyX = snakeHeadX;
+      snakeBodyY = snakeHead;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
+    }
     // snakeArray.push(array);
   //}
 }
@@ -109,19 +133,21 @@ window.onload = function() {
     } else if (snakeDirection === "left") {
       snakeSpeedX = 20;
       moveLeft();
-   
+      growSnake();
       snakeHeadX = snakeHeadX - snakeSpeedX;
+      snakeBodyX = snakeBodyX - snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "up") {
       snakeSpeedY = 20;
       moveUp();
-   
+      growSnake();
       snakeHeadY = snakeHeadY - snakeSpeedY;
+      snakeBodyY = snakeBodyX - snakeSpeedY;
       snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
       snakeSpeedY = 20;
       moveDown();
-      
+      growSnake();
       snakeHeadY = snakeHeadY + snakeSpeedY;
       snakeSpeedX = 0;
     } else {
