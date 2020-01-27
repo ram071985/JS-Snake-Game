@@ -1,7 +1,8 @@
 
 let snakeHeadX = 200;
 let snakeHeadY = 300;
-let snakeBody = snakeHeadX - 20;
+let snakeBodyX = 180
+let snakeBodyY = 300;
 let snakeSpeedX = 10;
 let snakeSpeedY = 10;
 let snakeDirection;
@@ -19,11 +20,6 @@ function drawCanvas() {
 function snakeHead() {
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(200, 300, 20, 20)
-}
-
-function addSnake() {
-canvasContext.fillStyle = "green";
-canvasContext.fillRect(snakeBody, 300, 20, 20)
 }
 
 function moveRight() {
@@ -77,9 +73,11 @@ function makeFruit() {
 }
 
 function growSnake() {
-  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-    snakeArray.push(array);
-  }
+  //if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
+    canvasContext.fillStyle = "green";
+    canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
+    // snakeArray.push(array);
+  //}
 }
 
 window.addEventListener("keydown", function(e) {
@@ -104,26 +102,31 @@ window.onload = function() {
     if (snakeDirection === "right") {
       snakeSpeedX = 20;
       moveRight();
-      console.log(snakeBody)
+      growSnake();
       snakeHeadX = snakeHeadX + snakeSpeedX;
+      snakeBodyX = snakeBodyX + snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "left") {
       snakeSpeedX = 20;
       moveLeft();
+   
       snakeHeadX = snakeHeadX - snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "up") {
       snakeSpeedY = 20;
       moveUp();
+   
       snakeHeadY = snakeHeadY - snakeSpeedY;
       snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
       snakeSpeedY = 20;
       moveDown();
+      
       snakeHeadY = snakeHeadY + snakeSpeedY;
       snakeSpeedX = 0;
     } else {
       snakeHead();
+      growSnake();
     }
   }, 1000 / framesPerSecond);
 };
