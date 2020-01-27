@@ -1,14 +1,12 @@
-// GOAL 1: move the snake to the right when the app starts
-// GOAL 2: move the snake down when the app starts
 
-// REQUIREMENTS: use the snakeSpeedY and snakeSpeedX to accomplish your goals
-
-let snakeX = 60;
-let snakeY = 60;
+let snakeHeadX = 200;
+let snakeHeadY = 300;
+let snakeBody = snakeHeadX - 20;
 let snakeSpeedX = 10;
 let snakeSpeedY = 10;
 let snakeDirection;
 let snakeArray = [];
+let array = "hey";
 
 let fruitX = Math.floor(Math.random() * 40) * 20;
 let fruitY = Math.floor(Math.random() * 30) * 20;
@@ -18,55 +16,70 @@ function drawCanvas() {
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function snakeStartPosition() {
+function snakeHead() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(60, 60, 20, 20);
+  canvasContext.fillRect(200, 300, 20, 20)
+}
+
+function addSnake() {
+canvasContext.fillStyle = "green";
+canvasContext.fillRect(snakeBody, 300, 20, 20)
 }
 
 function moveRight() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(snakeX, snakeY, 20, 20);
-  if (snakeX === fruitX && snakeY === fruitY) {
-
-    window.location.reload(false);
-  } else if (snakeX === 800) {
+  canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
+  // let addSection = snakeArray[i] - 20;
+  } else if (snakeHeadX === 800) {
     window.location.reload(false);
   }
 }
 
 function moveLeft() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(snakeX, snakeY, 20, 20);
-  if (snakeX === fruitX && snakeY === fruitY) {
-    window.location.reload(false);
-  } else if (snakeX === 0) {
+  canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
+  
+  } else if (snakeHeadX === 0) {
     window.location.reload(false);
   }
 }
 
 function moveUp() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(snakeX, snakeY, 20, 20);
-  if (snakeX === fruitX && snakeY === fruitY) {
+  canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
     window.location.reload(false);
-  } else if (snakeY === 0) {
+  } else if (snakeHeadY === 0) {
     window.location.reload(false);
   }
 }
 
 function moveDown() {
   canvasContext.fillStyle = "green";
-  canvasContext.fillRect(snakeX, snakeY, 20, 20);
-  if (snakeX === fruitX && snakeY === fruitY) {
+  canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
     window.location.reload(false);
-  } else if (snakeY === 600) {
+  } else if (snakeHeadY === 600) {
     window.location.reload(false);
   }
 }
 
 function makeFruit() {
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
+  canvasContext.fillStyle = "red";
+  canvasContext.fillRect(0, 0, 0, 0);
+} else {
   canvasContext.fillStyle = "red";
   canvasContext.fillRect(fruitX, fruitY, 20, 20);
+}
+}
+
+function growSnake() {
+  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
+    snakeArray.push(array);
+  }
 }
 
 window.addEventListener("keydown", function(e) {
@@ -91,25 +104,26 @@ window.onload = function() {
     if (snakeDirection === "right") {
       snakeSpeedX = 20;
       moveRight();
-      snakeX = snakeX + snakeSpeedX;
+      console.log(snakeBody)
+      snakeHeadX = snakeHeadX + snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "left") {
       snakeSpeedX = 20;
       moveLeft();
-      snakeX = snakeX - snakeSpeedX;
+      snakeHeadX = snakeHeadX - snakeSpeedX;
       snakeSpeedY = 0;
     } else if (snakeDirection === "up") {
       snakeSpeedY = 20;
       moveUp();
-      snakeY = snakeY - snakeSpeedY;
+      snakeHeadY = snakeHeadY - snakeSpeedY;
       snakeSpeedX = 0;
     } else if (snakeDirection === "down") {
       snakeSpeedY = 20;
       moveDown();
-      snakeY = snakeY + snakeSpeedY;
+      snakeHeadY = snakeHeadY + snakeSpeedY;
       snakeSpeedX = 0;
     } else {
-      snakeStartPosition();
+      snakeHead();
     }
   }, 1000 / framesPerSecond);
 };
