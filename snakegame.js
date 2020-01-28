@@ -3,10 +3,14 @@ let snakeHeadX = 200;
 let snakeHeadY = 300;
 let snakeBodyX;
 let snakeBodyY;
+let arrayX;
+let bodyAxis = snakeBodyX + snakeBodyY;
 let snakeSpeedX = 10;
 let snakeSpeedY = 10;
 let snakeDirection;
-let snakeArray = [];
+let snakeArray = [
+  { x: 180, y: 300 }
+];
 let array = "hey";
 
 let fruitX = Math.floor(Math.random() * 40) * 20;
@@ -25,9 +29,7 @@ function snakeHead() {
 function moveRight() {
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
-  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-  // let addSection = snakeArray[i] - 20;
-  } else if (snakeHeadX === 800) {
+  if (snakeHeadX === 800) {
     window.location.reload(false);
   }
 }
@@ -35,9 +37,7 @@ function moveRight() {
 function moveLeft() {
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
-  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-  
-  } else if (snakeHeadX === 0) {
+   if (snakeHeadX === 0) {
     window.location.reload(false);
   }
 }
@@ -45,9 +45,7 @@ function moveLeft() {
 function moveUp() {
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
-  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-    window.location.reload(false);
-  } else if (snakeHeadY === 0) {
+    if (snakeHeadY === 0) {
     window.location.reload(false);
   } 
 }
@@ -55,17 +53,25 @@ function moveUp() {
 function moveDown() {
   canvasContext.fillStyle = "green";
   canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
-  if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-    window.location.reload(false);
-  } else if (snakeHeadY === 600) {
+  if (snakeHeadY === 600) {
     window.location.reload(false);
   }
 }
 
 function makeFruit() {
   if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-    canvasContext.fillStyle = "red";
-    canvasContext.fillRect(fruitX, fruitY, 20, 20);
+    let newSnakePiece = new Object();
+    newSnakePiece.x = 180;
+    newSnakePiece.y = 300; 
+     snakeArray.push(newSnakePiece);
+     for (i = 0; i < snakeArray.length; i++) {
+       let arrayX = snakeArray[i].x;
+       let arrayY = snakeArray[i].y;
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(arrayX, arrayY, 20, 20);
+      console.log(snakeArray);
+      debugger;
+     }
 } else {
   canvasContext.fillStyle = "red";
   canvasContext.fillRect(fruitX, fruitY, 20, 20);
@@ -95,13 +101,12 @@ function growSnake() {
       canvasContext.fillStyle = "green";
       canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
     } else {
-      snakeBodyX = snakeHeadX;
+      snakeBodyX = snakeHeadX - 20;
       snakeBodyY = snakeHead;
       canvasContext.fillStyle = "green";
       canvasContext.fillRect(snakeBodyX, snakeBodyY, 20, 20)
     }
-    // snakeArray.push(array);
-  //}
+  
 }
 
 window.addEventListener("keydown", function(e) {
@@ -153,6 +158,8 @@ window.onload = function() {
     } else {
       snakeHead();
       growSnake();
+     
     }
   }, 1000 / framesPerSecond);
 };
+
