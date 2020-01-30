@@ -3,6 +3,9 @@ let snakeHeadY;
 let snakeSpeedX = 20;
 let snakeSpeedY = 20;
 let snakeDirection;
+let lastItem;
+let lastItemX;
+let lastItemY;
 let snakeArray = [{ x: 200, y: 300 }];
 let fruitX = Math.floor(Math.random() * 40) * 20;
 let fruitY = Math.floor(Math.random() * 30) * 20;
@@ -26,6 +29,18 @@ function snakeHead() {
     snakeHeadX = snakeHeadX;
     canvasContext.fillStyle = "green";
     canvasContext.fillRect(snakeHeadX, snakeHeadY, 20, 20);
+  }
+}
+
+function snakeBody () {
+  if (snakeDirection === "right") {
+    lastItem = snakeArray.slice(-1)[0];
+    lastItemX = lastItem.x;
+    lastItemY = lastItem.y;
+    lastItemX = lastItemX - 20;
+    lastItemY = lastItemY;
+    canvasContext.fillStyle = "green";
+    canvasContext.fillRect(lastItemX, lastItemY, 20, 20);
   }
 }
 
@@ -70,7 +85,9 @@ window.onload = function() {
     makeFruit();
     if (snakeDirection === "right") {
       snakeHead();
+      snakeBody();
       snakeHeadX = snakeHeadX + snakeSpeedX;
+      lastItemX = lastItemX + snakeSpeedX;
     } else if (snakeDirection === "left") {
       snakeHead();
       snakeHeadX = snakeHeadX - snakeSpeedX;
