@@ -34,6 +34,7 @@ function snakeHead() {
 
 function snakeBody () {
   if (snakeDirection === "right") {
+    for (i = 0; i < snakeArray.length; i++) {
     lastItem = snakeArray.slice(-1)[0];
     lastItemX = lastItem.x;
     lastItemY = lastItem.y;
@@ -41,6 +42,7 @@ function snakeBody () {
     lastItemY = lastItemY;
     canvasContext.fillStyle = "green";
     canvasContext.fillRect(lastItemX, lastItemY, 20, 20);
+    }
   }
 }
 
