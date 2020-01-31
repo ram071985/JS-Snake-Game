@@ -1,5 +1,3 @@
-let snakeSpeedX = 20;
-let snakeSpeedY = 20;
 let snakeDirection;
 let lastItem;
 let lastItemX;
@@ -7,7 +5,7 @@ let lastItemY;
 let snakeArray = [
   { x: 200, y: 300 },
   { x: 180, y: 300 }
- // { x: 160, y: 300 }
+  // { x: 160, y: 300 }
 ];
 let fruitX = Math.floor(Math.random() * 40) * 20;
 let fruitY = Math.floor(Math.random() * 30) * 20;
@@ -32,22 +30,38 @@ function drawCanvas() {
 
 function drawSnake() {
   for (i = 0; i < snakeArray.length; i++) {
-    if (snakeDirection === "load") {
     canvasContext.fillStyle = "green";
     canvasContext.fillRect(snakeArray[i].x, snakeArray[i].y, 20, 20);
-    } else if (snakeDirection === "up") {
-      snakeArray[i].x = snakeArray[i].x + 20;
-      canvasContext.fillStyle = "green";
-      canvasContext.fillRect(snakeArray[i].x, snakeArray[i].y, 20, 20);
-    }
   }
 }
 
 function moveSnake() {
   for (i = 0; i < snakeArray.length; i++) {
-    if (snakeDirection === "up") {
-      snakeArray[i].y = snakeArray[i].y - snakeSpeedY;
-      snakeSpeedX = 0;
+    if (snakeDirection === "right") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let currentItem = snakeArray.slice(-1)[0];
+      currentItem.x = lastItem.x;
+      currentItem.y = lastItem.y;
+      lastItem.x = lastItem.x + 20;
+    } else if (snakeDirection === "left") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let currentItem = snakeArray.slice(-1)[0];
+      currentItem.x = lastItem.x;
+      currentItem.y = lastItem.y;
+      lastItem.x = lastItem.x - 20;
+    } else if (snakeDirection === "up") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let currentItem = snakeArray.slice(-1)[0];
+      currentItem.x = lastItem.x;
+      currentItem.y = lastItem.y;
+      lastItem.y = lastItem.y - 20;
+  
+    } else if (snakeDirection === "down") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let currentItem = snakeArray.slice(-1)[0];
+      currentItem.x = lastItem.x;
+      currentItem.y = lastItem.y;
+      lastItem.y = lastItem.y + 20;
     }
   }
 }
@@ -98,22 +112,13 @@ window.addEventListener("keydown", function(e) {
 });
 
 window.onload = function() {
-  snakeDirection = "load";
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
-  let framesPerSecond = 15;
+  let framesPerSecond = 5;
   setInterval(function() {
     drawCanvas();
-    // makeFruit();
+//  makeFruit();
     drawSnake();
-    if (snakeDirection === "right") {
-      moveSnake();
-    } else if (snakeDirection === "left") {
-      moveSnake();
-    } else if (snakeDirection === "up") {
-      moveSnake();
-    } else if (snakeDirection === "down") {
-      moveSnake();
-    }
+    moveSnake();
   }, 1000 / framesPerSecond);
 };
