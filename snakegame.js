@@ -2,11 +2,8 @@ let snakeDirection;
 let lastItem;
 let lastItemX;
 let lastItemY;
-let snakeArray = [
-  { x: 200, y: 300 },
-  { x: 180, y: 300 },
-  { x: 160, y: 300 }
-];
+let directionSet;
+let snakeArray = [{ x: 200, y: 300 }];
 let fruitX = Math.floor(Math.random() * 40) * 20;
 let fruitY = Math.floor(Math.random() * 30) * 20;
 
@@ -17,63 +14,82 @@ function drawCanvas() {
 
 function drawSnake() {
   for (i = 0; i < snakeArray.length; i++) {
+    if (snakeDirection === up) {
+   let currentItem = snakeArray.slice(-1)[0]
     canvasContext.fillStyle = "green";
-    canvasContext.fillRect(snakeArray[i].x, snakeArray[i].y, 20, 20);
+    canvasContext.fillRect(snakeArray[i].x - , snakeArray[i].y, 20, 20);
   }
 }
 
-function moveSnake() {
+//function moveUp() {
+// for (i = 0; i < snakeArray.length; i++) {
+//   if (snakeArray[i] !== 0)
+//snakeArray[i].y = ;
+//  }
+//}
 
-    if (snakeDirection === "right") {
-      for (i = 0; i < snakeArray.length; i++) {
-      snakeArray[i].x = snakeArray[i].x + 20;
+  function moveSnake() {
+    for (i = 0; i < snakeArray.length; i++) {
+      if (snakeDirection === "right") {
+        snakeArray[i].x = snakeArray[i].x + 20;
+      } else if (snakeDirection === "left") {
+      snakeArray[i].x = snakeArray[i].x - 20;
+      } else if (snakeDirection === "up") {
+      snakeArray[i].y = snakeArray[i].y - 20;
+      } else if (snakeDirection === "down") {
+      snakeArray[i].y = snakeArray[i].y + 20;
       }
-    } else if (snakeDirection === "left") {
-      for (i = 0; i < snakeArray.length; i++) {
-      snakeArray[i].x = snakeArray[i].x - 20
-      }
-    } else if (snakeDirection === "up") {
-      for (i = 0; i < snakeArray.length; i++) {
-        snakeArray[i] = 0;
-snakeArray[i].y = snakeArray[i].y - 20;
-         
-
-        }
-      }
-  
-      
-    //  snakeArray[i].y = ;
-
-
-      //   } else if (snakeDirection === "down") {
-      //    let lastItem = snakeArray.slice(-2)[0];
-      //  let currentItem = snakeArray.slice(-1)[0];
-      //   currentItem.x = lastItem.x;
-      //   currentItem.y = lastItem.y;
-      //   lastItem.y = lastItem.y + 20;
-      // }
+    }
     
-  
-}
+  } 
 
-//function makeFruit() {
-// if (snakeHeadX === fruitX && snakeHeadY === fruitY) {
-//   canvasContext.fillStyle = "red";
-//  canvasContext.fillRect(0, 0, 0, 0);
-//   let newSnakePiece = {
-//     x: 200,
-//      y: 300
-//   };
-//    snakeArray.push(newSnakePiece);
-//    console.log(snakeArray);
-//   debugger;
-//   fruitX = Math.floor(Math.random() * 40) * 20;
-//   fruitY = Math.floor(Math.random() * 30) * 20;
-// } else {
-// canvasContext.fillStyle = "red";
-//  canvasContext.fillRect(fruitX, fruitY, 20, 20);
-//}
-//}
+  function addSnakePieceUp() {
+    for (i = 0; i < snakeArray.length; i++) {
+    if (snakeDirection === "up") {
+    let lastItem = snakeArray.slice(-2)[0];
+    let currentItem = snakeArray.slice(-1)[0]
+    console.log(currentItem)
+    let newSnakePiece = {
+      x: snakeArray[0].x,
+      y: lastItem.y - 20};
+    snakeArray.push(newSnakePiece);
+    }
+  }
+  }
+
+  function addSnakeDown() { 
+    if (snakeDirection === "down") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let newSnakePiece = {
+        x: lastItem.x + 20,
+        y: snakeArray[0].y};
+      snakeArray.push(newSnakePiece);
+    }
+  }
+
+  function addSnakePieceRight() {
+    if (snakeDirection === "right") {
+      let lastItem = snakeArray.slice(-2)[0];
+      let newSnakePiece = {
+        x: lastItem.x + 20,
+        y: snakeArray[0].y};
+      snakeArray.push(newSnakePiece);
+    }
+  }
+
+function makeFruit() {
+  if (snakeArray[0].x === fruitX && snakeArray[0].y === fruitY) {
+    canvasContext.fillStyle = "red";
+    canvasContext.fillRect(0, 0, 0, 0);
+    addSnakePieceRight();
+    console.log(snakeArray);
+    fruitX = Math.floor(Math.random() * 40) * 20;
+    fruitY = Math.floor(Math.random() * 30) * 20;
+  } else {
+    canvasContext.fillStyle = "red";
+    canvasContext.fillRect(fruitX, fruitY, 20, 20);
+  }
+}
 
 window.addEventListener("keydown", function(e) {
   if (e.code === "ArrowRight") {
@@ -93,12 +109,10 @@ window.onload = function() {
   let framesPerSecond = 5;
   setInterval(function() {
     drawCanvas();
-    //  makeFruit();
+    makeFruit();
     drawSnake();
+
     moveSnake();
     console.log(snakeArray);
   }, 1000 / framesPerSecond);
 };
-
-
-
