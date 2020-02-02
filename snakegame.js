@@ -14,19 +14,13 @@ function drawCanvas() {
 
 function drawSnake() {
   for (i = 0; i < snakeArray.length; i++) {
-    if (snakeDirection === up) {
+   if (snakeArray[0].y === snakeArray[i].y - 20) {
    let currentItem = snakeArray.slice(-1)[0]
     canvasContext.fillStyle = "green";
-    canvasContext.fillRect(snakeArray[i].x - , snakeArray[i].y, 20, 20);
+    canvasContext.fillRect(snakeArray[i].x, snakeArray[i].y, 20, 20);
+   }
   }
 }
-
-//function moveUp() {
-// for (i = 0; i < snakeArray.length; i++) {
-//   if (snakeArray[i] !== 0)
-//snakeArray[i].y = ;
-//  }
-//}
 
   function moveSnake() {
     for (i = 0; i < snakeArray.length; i++) {
@@ -43,40 +37,6 @@ function drawSnake() {
     
   } 
 
-  function addSnakePieceUp() {
-    for (i = 0; i < snakeArray.length; i++) {
-    if (snakeDirection === "up") {
-    let lastItem = snakeArray.slice(-2)[0];
-    let currentItem = snakeArray.slice(-1)[0]
-    console.log(currentItem)
-    let newSnakePiece = {
-      x: snakeArray[0].x,
-      y: lastItem.y - 20};
-    snakeArray.push(newSnakePiece);
-    }
-  }
-  }
-
-  function addSnakeDown() { 
-    if (snakeDirection === "down") {
-      let lastItem = snakeArray.slice(-2)[0];
-      let newSnakePiece = {
-        x: lastItem.x + 20,
-        y: snakeArray[0].y};
-      snakeArray.push(newSnakePiece);
-    }
-  }
-
-  function addSnakePieceRight() {
-    if (snakeDirection === "right") {
-      let lastItem = snakeArray.slice(-2)[0];
-      let newSnakePiece = {
-        x: lastItem.x + 20,
-        y: snakeArray[0].y};
-      snakeArray.push(newSnakePiece);
-    }
-  }
-
 function makeFruit() {
   if (snakeArray[0].x === fruitX && snakeArray[0].y === fruitY) {
     canvasContext.fillStyle = "red";
@@ -91,7 +51,12 @@ function makeFruit() {
   }
 }
 
+function noScroll() {
+    window.scrollTo(0, 800);
+}
+
 window.addEventListener("keydown", function(e) {
+    window.scrollTo(0, 0);
   if (e.code === "ArrowRight") {
     snakeDirection = "right";
   } else if (e.code === "ArrowLeft") {
@@ -103,6 +68,8 @@ window.addEventListener("keydown", function(e) {
   }
 });
 
+window.addEventListener('scroll', noScroll);
+
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
@@ -111,7 +78,6 @@ window.onload = function() {
     drawCanvas();
     makeFruit();
     drawSnake();
-
     moveSnake();
     console.log(snakeArray);
   }, 1000 / framesPerSecond);
