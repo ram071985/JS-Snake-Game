@@ -60,7 +60,7 @@ function addSnakeDown() {
         let currentItem = snakeArray.slice(-1)[0];
         let newSnakePiece = {
             x: snakeArray[0].x,
-            y: currentItem.y + 20
+            y: snakeArray[0].y + 20
         };
         snakeArray.push(newSnakePiece);
     }
@@ -70,7 +70,7 @@ function addSnakePieceRight() {
     if (snakeDirection === "right") {
         let currentItem = snakeArray.slice(-1)[0];
         let newSnakePiece = {
-            x: currentItem.x + 20,
+            x: snakeArray[0].x + 20,
             y: snakeArray[0].y
         };
         snakeArray.push(newSnakePiece);
@@ -81,7 +81,7 @@ function addSnakePieceLeft() {
     if (snakeDirection === "right") {
         let currentItem = snakeArray.slice(-1)[0];
         let newSnakePiece = {
-            x: currentItem.x - 20,
+            x: snakeArray[0].x - 20,
             y: snakeArray[0].y
         };
         snakeArray.push(newSnakePiece);
