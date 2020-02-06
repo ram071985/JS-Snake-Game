@@ -5,10 +5,9 @@ body {
 }
 
 #score {
-height: 100;
-width: 850;
+
 margin-top: 100px;
-font-size: 30px;
+font-size: 50px;
 }
 
 .canvas {

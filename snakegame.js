@@ -1,8 +1,4 @@
 let snakeDirection;
-let lastItem;
-let lastItemX;
-let lastItemY;
-let directionSet;
 let snakeArray = [{ x: 200, y: 300 }];
 let fruitX = Math.floor(Math.random() * 40) * 20;
 let fruitY = Math.floor(Math.random() * 30) * 20;
@@ -10,7 +6,6 @@ let fruitY = Math.floor(Math.random() * 30) * 20;
 function drawCanvas() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-
 }
 
 function drawSnake() {
@@ -25,7 +20,7 @@ function moveSnake() {
     return { x: snakePart.x, y: snakePart.y };
   });
   if (snakeDirection === "right") {
-    console.log(snakeDirection === "right")
+    console.log(snakeDirection === "right");
     snakeArray[0].x += 20;
   } else if (snakeDirection === "left") {
     snakeArray[0].x -= 20;
@@ -94,10 +89,6 @@ function makeFruit() {
     canvasContext.fillRect(fruitX, fruitY, 20, 20);
   }
 }
-/*function drawFruit() {
-  canvasContext.fillStyle = "red";
-  canvasContext.fillRect(fruitX, fruitY, 20, 20);
-} */
 
 function noScroll() {
   window.scrollTo(0, 800);
@@ -130,26 +121,23 @@ function startOver() {
 
 function addScore() {
   let scoreNumber = document.getElementById("score");
-  let scoreText = scoreNumber.textContent;
   if (snakeArray[0].x === fruitX && snakeArray[0].y === fruitY) {
     let arrayLength = snakeArray.length;
     let arrayLengthString = arrayLength.toString();
-    console.log(typeof arrayLengthString)
-    
-  } 
+    scoreNumber.textContent = "Score = " + arrayLengthString;
+  }
 }
 
-
-  window.addEventListener("keydown", function(e) {
-    if (e.code === "ArrowRight" && snakeDirection != "left") {
-      snakeDirection = "right";
-    } else if (e.code === "ArrowLeft" && snakeDirection != "right") {
-      snakeDirection = "left";
-    } else if (e.code === "ArrowUp" && snakeDirection != "down") {
+window.addEventListener("keydown", function(e) {
+  if (e.code === "ArrowRight" && snakeDirection != "left") {
+    snakeDirection = "right";
+  } else if (e.code === "ArrowLeft" && snakeDirection != "right") {
+    snakeDirection = "left";
+  } else if (e.code === "ArrowUp" && snakeDirection != "down") {
     snakeDirection = "up";
-   } else if (e.code === "ArrowDown" && snakeDirection != "up") {
+  } else if (e.code === "ArrowDown" && snakeDirection != "up") {
     snakeDirection = "down";
-   }
+  }
 });
 
 window.addEventListener("scroll", noScroll);
@@ -161,20 +149,9 @@ window.onload = function() {
   setInterval(function() {
     drawCanvas();
     makeFruit();
-    /*   if (snakeArray[0].x === fruitX && snakeArray[0].y === fruitY) {
-      canvasContext.fillStyle = "red";
-      canvasContext.fillRect(0, 0, 0, 0);
-      addSnakePieceUp();
-      addSnakePieceRight();
-      console.log(snakeArray);
-      fruitX = Math.floor(Math.random() * 40) * 20;
-      fruitY = Math.floor(Math.random() * 30) * 20;
-    }*/
-
     moveSnake();
     addScore();
     drawSnake();
     startOver();
-    console.log(snakeArray[0])
   }, 1000 / framesPerSecond);
 };
