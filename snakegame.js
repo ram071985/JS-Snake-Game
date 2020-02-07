@@ -90,6 +90,10 @@ function makeFruit() {
   }
 }
 
+function noScroll() {
+  window.scrollTo(0, 800);
+}
+
 function startOver() {
   if (snakeArray[0].x === 800) {
     window.alert("GAME OVER!");
@@ -135,6 +139,8 @@ window.addEventListener("keydown", function(e) {
     snakeDirection = "down";
   }
 });
+
+window.addEventListener("scroll", noScroll);
 
 window.onload = function() {
   canvas = document.getElementById("gameCanvas");
