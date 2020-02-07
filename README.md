@@ -1,6 +1,6 @@
 # Snake Game (Vanilla Javascript)
 
-2D game where the object is to use your keyboard scroll arrows and guide the snake to eat the fruit and collect enough snake pieces to have the snake's head hit it's tale.Watch out for the edge of the canvas or when running into your snake while navigating!  Watch your pieces grow while the game keeps score. For a living running version go [HERE](https://ram071985.github.io/snake-game/) 
+2D game where the object is to use your keyboard scroll arrows and guide the snake to eat the fruit and collect enough snake pieces to have the snake's head hit it's tale.Watch out for the edge of the canvas or when running into your snake while navigating!  Watch your pieces grow while the game keeps score. For a living running version please go [HERE](https://ram071985.github.io/snake-game/) 
 
 ![GitHub](snake_game.png)
 
