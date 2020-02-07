@@ -4,16 +4,17 @@
 
 ![GitHub](snake_game.png)
 
-## Summary
+## Summary
 
 I wanted to create this game to increase my knowledge of javascript and take me to the outer limits of my comfort zone.The snake game utilizes html canvas to provide the layout and playing area for the snake and fruit to move.I was able to gain a lot more confidence in using loops to sift though the array parts that make up each part of the snake.The logic behind the snake moving like links in a chain was the most challenging aspect of the game to figure out for me.I'm very excited to have this 2D game as part of my skill sets in software development.  I would love to keep building more games in the future!  
 
-## Features
-- Game moves with keyboard arrows(right,left,up,down)
-- As snake grows larger, it moves like links in a chain
-- When snake hits wall game starts over
-- When snake hits itself in navigation game starts over
-- You're a winner when snake head connects with tale!
+## Features
+
+- Game moves with keyboard arrows(right,left,up,down)
+- As snake grows larger, it moves like links in a chain
+- When snake hits wall game starts over
+- When snake hits itself in navigation game starts over
+- You're a winner when snake head connects with tale!
 
 ## Author 
 
