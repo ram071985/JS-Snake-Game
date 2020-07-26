@@ -139,9 +139,4 @@ function addScore() {
     let arrayLengthString = arrayLength.toString();
     scoreNumber.textContent = "Score = " + arrayLengthString;
   }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> be4cd18a95975ce71669c7917ca5728276bfeeb4
